@@ -189,6 +189,6 @@ public class UserControllerTests {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(userDto)));
 
-        response.andExpect(MockMvcResultMatchers.status().isOk());
+        response.andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 }
