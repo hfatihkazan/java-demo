@@ -9,32 +9,32 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class UserService implements IUserService{
-    private IUserRepository _userRepository;
+public class UserService implements IUserService {
+    private IUserRepository userRepository;
 
-    public UserService(IUserRepository _userRepository) {
-        this._userRepository = _userRepository;
+    public UserService(IUserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Override
     public List<UserDto> findAllUsers() {
-        List<User> users = _userRepository.findAll();
-        return users.stream().map((user)-> mapToUserDto(user)).collect(Collectors.toList());
+        List<User> users = userRepository.findAll();
+        return users.stream().map((user) -> mapToUserDto(user)).collect(Collectors.toList());
     }
 
     @Override
     public User saveUser(User user) {
-        return _userRepository.save(user);
+        return userRepository.save(user);
     }
 
     @Override
     public User updateUser(UserDto user) {
-        User _user = mapToUser(user);
-        return _userRepository.save(_user);
+        User foundUser = mapToUser(user);
+        return userRepository.save(foundUser);
     }
 
     private User mapToUser(UserDto user) {
-        User _user = User.builder()
+        User builtUser = User.builder()
                 .id(user.getId())
                 .email(user.getEmail())
                 .phone(user.getPhone())
@@ -42,13 +42,13 @@ public class UserService implements IUserService{
                 .lastName(user.getLastName())
                 .password(user.getPassword())
                 .build();
-        return _user;
+        return builtUser;
     }
 
     @Override
     public UserDto findUserById(long userId) {
-        User _user = _userRepository.findById(userId).get();
-        return mapToUserDto(_user);
+        User foundUser = userRepository.findById(userId).get();
+        return mapToUserDto(foundUser);
     }
 
     private UserDto mapToUserDto(User user) {
