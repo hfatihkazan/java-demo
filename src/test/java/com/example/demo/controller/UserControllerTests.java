@@ -145,7 +145,7 @@ public class UserControllerTests {
      * */
     @Test
     @DisplayName("User updated successfully")
-        public void userPutController() throws Exception {
+    public void userPutController() throws Exception {
         given(userService.updateUser(ArgumentMatchers.any())).willReturn(user);
 
         ResultActions response = mockMvc.perform(MockMvcRequestBuilders.put("/users/1/edit")

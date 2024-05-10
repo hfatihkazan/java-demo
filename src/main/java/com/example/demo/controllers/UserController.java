@@ -20,7 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-public class UserController{
+public class UserController {
     private UserService userService;
 
     public UserController(UserService userService) {
